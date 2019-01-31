@@ -29,10 +29,8 @@
       <em class="text-danger" *ngIf="parafUnvan.hasError('maxlength') && parafUnvan.dirty">Paraf Ünvan
         too long.</em>
     </div>
-
-  </form>
+  </form> 
 </div>
-
 <div class="modal-footer">
   <button class="btn btn-default" (click)="modal.close()">Cancel</button>
   <button *ngIf="!isReadOnly()" class="btn btn-success" type="submit" [disabled]="itemForm.invalid" form="item-form">Save</button>

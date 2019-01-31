@@ -12,6 +12,7 @@ import { Confirmation } from 'src/app/common/_enums/confirmation.enum';
 import { ConfirmComponent } from './../confirm/confirm.component';
 import { Action } from 'src/app/common/_enums/action.enum';
 import { Mode } from 'src/app/common/_enums/mode.enum';
+import {Turkish  } from 'src/app/common/_models/datatable.turkish';
 
 @Component({
   selector: 'app-unvan',
@@ -34,14 +35,15 @@ export class UnvanComponent implements OnInit {
 
   ngOnInit() {
     this.dtOptions = {
-      pagingType: "full_numbers",
-      serverSide: true,
+      searching: true,
       processing: true,
-      searchDelay: 500,
+      serverSide: true,
+      responsive: true,
+      lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Hepsi"]],
+      language:Turkish,
       ajax: (dtParameters: any, callback) => {
         this.itemService.getDataTablesData(dtParameters).subscribe(resp => {
           this.items = resp.data as Unvan[];
-
           callback({
             recordsTotal: resp.recordsTotal,
             recordsFiltered: resp.recordsFiltered,
