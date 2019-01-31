@@ -1,0 +1,32 @@
+<div class="container">
+  <h1 class="text-center my-3">- Ünvan Listesi -</h1>
+
+  <app-data-tables-crud-buttons [showButtonText]="select.selectedItem?.adi" [selectedItem]="select.selectedItem"
+    (dtButtonClick)="hadleDtButtonClick($event)">
+  </app-data-tables-crud-buttons>
+
+  <table id="item-table" class="table table-hover table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Industry</th>
+        <th>Founded</th>
+      </tr>
+
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items" (click)="select.selectRow(item)" [ngStyle]="{ 'color': select.selectedItem?.id === company.id ? 'white' : 'black' }"
+        [ngClass]="{ 'bg-info': select.selectedItem?.id === item.id }">
+        <td>{{ item.id }}</td>
+        <td>{{ item.adi }}</td>
+        <td>{{ item.parafUnvan }}</td>
+        <td>{{ item.status }}</td>
+        
+      </tr>
+      <tr *ngIf="items?.length === 0">
+        <td colspan="4" class="no-data-available">No data!</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

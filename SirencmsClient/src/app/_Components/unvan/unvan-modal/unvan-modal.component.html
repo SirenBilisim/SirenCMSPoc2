@@ -1,0 +1,39 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ getModalTitle() }}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="modal.close()">
+    &times;
+  </button>
+</div>
+<div class="modal-body">
+
+  <ul *ngIf="errors?.length > 0">
+    <li *ngFor="let error of errors" class="text-danger">{{ error }}</li>
+  </ul>
+
+  <form [formGroup]="itemForm" (ngSubmit)="saveItem()" novalidate autocomplete="off" id="item-form">
+
+    <div class="form-group">
+      <label for="adi" class="control-label">Name:</label>
+      <input formControlName="adi" class="form-control" type="text" id="adi">
+      <em class="text-danger" *ngIf="itemForm.get('adi').hasError('required') && itemForm.get('adi').dirty">
+        Name is required.</em>
+      <em class="text-danger" *ngIf="itemForm.get('adi').hasError('maxlength') && itemForm.get('adi').dirty">
+        Name too long.</em>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label" for="parafUnvan">Paraf Ünvan:</label>
+      <input formControlName="parafUnvan" class="form-control" type="text" id="parafUnvan">
+      <em class="text-danger" *ngIf="itemForm.get('parafUnvan').hasError('required') && itemForm.get('parafUnvan').dirty">Paraf Ünvan
+        is required.</em>
+      <em class="text-danger" *ngIf="itemForm.get('parafUnvan').hasError('maxlength') && itemForm.get('parafUnvan').dirty">Paraf Ünvan
+        too long.</em>
+    </div>
+
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-default" (click)="modal.close()">Cancel</button>
+  <button *ngIf="!isReadOnly()" class="btn btn-success" type="submit" [disabled]="itemForm.invalid" form="item-form">Save</button>
+</div>
