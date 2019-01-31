@@ -32,13 +32,15 @@ export class UnvanModalComponent implements OnInit {
     this.buildForm();
 
   }
+  
+
 
   private buildForm(): void {
     this.itemForm = new FormGroup({
-      id:new FormControl
-      (
-        { value: this.isInAddMode() ? 0 : this.itemToEdit.id, disabled: this.isReadOnly() }
-      ),
+      id: new FormControl
+        (
+          { value: this.isInAddMode() ? 0 : this.itemToEdit.id, disabled: this.isReadOnly() }
+        ),
       adi: new FormControl
         (
           { value: this.isInAddMode() ? "" : this.itemToEdit.adi, disabled: this.isReadOnly() },
@@ -53,7 +55,19 @@ export class UnvanModalComponent implements OnInit {
     });
   }
 
-  private isInAddMode(): boolean {
+  //#region formGetters
+  get adi() {
+    return this.itemForm.get('adi');
+  }
+
+  get parafUnvan() {
+    return this.itemForm.get('parafUnvan');
+  }
+
+   //#endregion
+   
+  
+   private isInAddMode(): boolean {
     return this.mode === Mode.ADD;
   }
 
