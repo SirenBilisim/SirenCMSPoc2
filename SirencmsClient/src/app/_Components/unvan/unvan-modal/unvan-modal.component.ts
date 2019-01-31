@@ -35,6 +35,10 @@ export class UnvanModalComponent implements OnInit {
 
   private buildForm(): void {
     this.itemForm = new FormGroup({
+      id:new FormControl
+      (
+        { value: this.isInAddMode() ? 0 : this.itemToEdit.id, disabled: this.isReadOnly() }
+      ),
       adi: new FormControl
         (
           { value: this.isInAddMode() ? "" : this.itemToEdit.adi, disabled: this.isReadOnly() },
@@ -73,6 +77,7 @@ export class UnvanModalComponent implements OnInit {
 
   private mapToDto(form: any): UnvanForManipulation {
     let item = new UnvanForManipulation();
+    item.id = form.id;
     item.adi = form.adi;
     item.parafUnvan = form.parafUnvan;
     return item;

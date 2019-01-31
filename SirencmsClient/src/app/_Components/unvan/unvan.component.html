@@ -9,20 +9,18 @@
     <thead>
       <tr>
         <th>ID</th>
-        <th>Name</th>
-        <th>Industry</th>
-        <th>Founded</th>
+        <th>Adı</th>
+        <th>Paraf Ünvan</th>
+        <th>Durum</th>
       </tr>
-
     </thead>
     <tbody>
-      <tr *ngFor="let item of items" (click)="select.selectRow(item)" [ngStyle]="{ 'color': select.selectedItem?.id === company.id ? 'white' : 'black' }"
+      <tr *ngFor="let item of items" (click)="select.selectRow(item)" [ngStyle]="{ 'color': select.selectedItem?.id === item.id ? 'white' : 'black' }"
         [ngClass]="{ 'bg-info': select.selectedItem?.id === item.id }">
         <td>{{ item.id }}</td>
         <td>{{ item.adi }}</td>
         <td>{{ item.parafUnvan }}</td>
-        <td>{{ item.status }}</td>
-        
+        <td>{{ item.status }}</td>        
       </tr>
       <tr *ngIf="items?.length === 0">
         <td colspan="4" class="no-data-available">No data!</td>

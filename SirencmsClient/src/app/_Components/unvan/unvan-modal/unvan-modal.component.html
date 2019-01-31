@@ -11,7 +11,7 @@
   </ul>
 
   <form [formGroup]="itemForm" (ngSubmit)="saveItem()" novalidate autocomplete="off" id="item-form">
-
+    <input type="hidden" formControlName="id" placeholder="id" name="id" class="form-control" id="id">
     <div class="form-group">
       <label for="adi" class="control-label">Name:</label>
       <input formControlName="adi" class="form-control" type="text" id="adi">

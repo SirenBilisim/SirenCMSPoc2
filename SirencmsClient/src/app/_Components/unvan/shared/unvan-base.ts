@@ -1,5 +1,6 @@
 export class UnvanBase {
-    adi: string;
-    parafUnvan: string;
-    status : number;
-  }
+  id: number;
+  adi: string;
+  parafUnvan: string;
+  status: number;
+}
