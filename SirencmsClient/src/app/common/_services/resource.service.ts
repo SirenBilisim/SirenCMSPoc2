@@ -30,5 +30,6 @@ export abstract class ResourceService<T> {
   public update(id:any, item: T) {
     return this.http.put<T>(`${this.apiUrl}/${this.endpoint}/${id}`, item);
   }
+ 
 
 }

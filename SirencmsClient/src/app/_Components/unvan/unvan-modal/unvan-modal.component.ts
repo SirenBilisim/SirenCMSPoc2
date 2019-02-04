@@ -33,8 +33,6 @@ export class UnvanModalComponent implements OnInit {
 
   }
 
-
-
   private buildForm(): void {
     this.itemForm = new FormGroup({
       id: new FormControl
@@ -45,7 +43,8 @@ export class UnvanModalComponent implements OnInit {
         (
           { value: this.isInAddMode() ? "" : this.itemToEdit.adi, disabled: this.isReadOnly() },
           [Validators.required, Validators.maxLength(255)],
-          [this.validateEmailNotTaken.bind(this)]
+          // ValidateAdiExist.createValidator(this.itemService, this.itemToEdit.id)
+          [this.checkExistItem.bind(this)]
         ),
       parafUnvan: new FormControl
         (
@@ -56,8 +55,11 @@ export class UnvanModalComponent implements OnInit {
     });
   }
 
-  validateEmailNotTaken(control: AbstractControl) {
-    return this.itemService.getUnvanByAdi(this.itemToEdit.id, control.value).then(res => {
+  checkExistItem(control: AbstractControl) {
+    var id = 0;
+    if(this.itemToEdit != null) id = this.itemToEdit.id;
+    
+    return this.itemService.checkExistItem(id, control.value).then(res => {
       return res ? null : { adiExists: true };
     });
   }

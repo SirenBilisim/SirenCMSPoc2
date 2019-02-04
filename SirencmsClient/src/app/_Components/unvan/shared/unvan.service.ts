@@ -20,8 +20,11 @@ export class UnvanService extends ResourceService<UnvanBase> {
     return this.http.post<DataTablesResponse>(`${this.apiUrl}/${this.endpoint}/GetTableData`, dtParameters, {});
   }
 
-  public getUnvanByAdi(id: number, adi: string): Promise<boolean> {
-    if (id == null) id = 0;
-    return this.http.get<boolean>(`${this.apiUrl}/${this.endpoint}/CheckDuplicate/${id}/${adi}`).toPromise();
+  public checkExistItem(id: number, adi: string): Promise<boolean> {
+    var item = {
+      id: id, adi: adi
+    }
+    return this.http.post<boolean>(`${this.apiUrl}/${this.endpoint}/CheckDuplicate/`, item).toPromise();
   }
+
 }
