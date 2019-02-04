@@ -1,4 +1,4 @@
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Component, OnInit, Input } from '@angular/core';
 
 import { Mode } from './../../../common/_enums/mode.enum';
@@ -32,7 +32,7 @@ export class UnvanModalComponent implements OnInit {
     this.buildForm();
 
   }
-  
+
 
 
   private buildForm(): void {
@@ -44,7 +44,8 @@ export class UnvanModalComponent implements OnInit {
       adi: new FormControl
         (
           { value: this.isInAddMode() ? "" : this.itemToEdit.adi, disabled: this.isReadOnly() },
-          [Validators.required, Validators.maxLength(255)]
+          [Validators.required, Validators.maxLength(255)],
+          [this.validateEmailNotTaken.bind(this)]
         ),
       parafUnvan: new FormControl
         (
@@ -55,7 +56,15 @@ export class UnvanModalComponent implements OnInit {
     });
   }
 
+  validateEmailNotTaken(control: AbstractControl) {
+    return this.itemService.getUnvanByAdi(this.itemToEdit.id, control.value).then(res => {
+      return res ? null : { adiExists: true };
+    });
+  }
+
   //#region formGetters
+ 
+
   get adi() {
     return this.itemForm.get('adi');
   }
@@ -64,10 +73,10 @@ export class UnvanModalComponent implements OnInit {
     return this.itemForm.get('parafUnvan');
   }
 
-   //#endregion
-   
-  
-   private isInAddMode(): boolean {
+  //#endregion
+
+
+  private isInAddMode(): boolean {
     return this.mode === Mode.ADD;
   }
 

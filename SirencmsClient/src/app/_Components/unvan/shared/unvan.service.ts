@@ -12,11 +12,16 @@ import { UnvanBase } from './unvan-base';
 })
 export class UnvanService extends ResourceService<UnvanBase> {
 
-  constructor(http: HttpClient) { 
+  constructor(http: HttpClient) {
     super(http, "unvan");
   }
 
   public getDataTablesData(dtParameters: DataTablesOptions): Observable<DataTablesResponse> {
     return this.http.post<DataTablesResponse>(`${this.apiUrl}/${this.endpoint}/GetTableData`, dtParameters, {});
+  }
+
+  public getUnvanByAdi(id: number, adi: string): Promise<boolean> {
+    if (id == null) id = 0;
+    return this.http.get<boolean>(`${this.apiUrl}/${this.endpoint}/CheckDuplicate/${id}/${adi}`).toPromise();
   }
 }
