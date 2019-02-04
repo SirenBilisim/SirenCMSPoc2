@@ -101,6 +101,7 @@ export class UnvanComponent implements OnInit {
     modalReference.componentInstance.mode = mode;
 
     modalReference.result.then((result) => {
+      console.log(result);
       if (result === "save") {
         this.reloadAndToastSuccess();
       }
@@ -109,7 +110,7 @@ export class UnvanComponent implements OnInit {
 
   private reloadAndToastSuccess(): void {
     this.realoadTable();
-    this.toastr.success("Success!");
+    this.toastr.success("İşleminiz başarıyla kaydedilmiştir.");
   }
 
   private onAlternativeModalClose(reason: any): any {

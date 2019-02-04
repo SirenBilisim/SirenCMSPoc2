@@ -43,7 +43,6 @@ export class UnvanModalComponent implements OnInit {
         (
           { value: this.isInAddMode() ? "" : this.itemToEdit.adi, disabled: this.isReadOnly() },
           [Validators.required, Validators.maxLength(255)],
-          // ValidateAdiExist.createValidator(this.itemService, this.itemToEdit.id)
           [this.checkExistItem.bind(this)]
         ),
       parafUnvan: new FormControl
@@ -54,7 +53,6 @@ export class UnvanModalComponent implements OnInit {
 
     });
   }
-
   checkExistItem(control: AbstractControl) {
     var id = 0;
     if(this.itemToEdit != null) id = this.itemToEdit.id;
@@ -65,7 +63,6 @@ export class UnvanModalComponent implements OnInit {
   }
 
   //#region formGetters
- 
 
   get adi() {
     return this.itemForm.get('adi');
@@ -95,7 +92,9 @@ export class UnvanModalComponent implements OnInit {
     if (this.itemForm.valid) {
       let item = this.mapToDto(this.itemForm.value);
       this.isInAddMode()
-        ? this.itemService.add(item).subscribe(() => this.modal.close("save"), err => this.mapErrors(err))
+        ? this.itemService.add(item).subscribe(() => {
+          this.modal.close("save");
+        }, err => this.mapErrors(err))
         : this.itemService.update(this.itemToEdit.id, item).subscribe(() => this.modal.close("save"), err => this.mapErrors(err))
     }
   }
