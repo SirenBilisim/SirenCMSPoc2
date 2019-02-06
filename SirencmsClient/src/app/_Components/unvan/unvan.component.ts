@@ -45,6 +45,8 @@ export class UnvanComponent implements OnInit {
       responsive: true,
       lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Hepsi"]],
       language: Turkish,
+      dom: "<'row'<'col-sm-12'tr>>" +
+        "<'row'<'col-sm-4'l><'col-sm-4'i><'col-sm-4'p>>",
       ajax: (dtParameters: any, callback) => {
         this.itemService.getDataTablesData(dtParameters).subscribe(resp => {
           this.items = resp.data as Unvan[];
@@ -62,7 +64,7 @@ export class UnvanComponent implements OnInit {
         {
           data: "status",
           searchable: false,
-          width:"50"
+          width: "50"
         }
       ]
     }
@@ -106,7 +108,7 @@ export class UnvanComponent implements OnInit {
     modalReference.componentInstance.mode = mode;
 
     modalReference.result.then((result) => {
-      
+
       if (result === "save") {
         this.reloadAndToastSuccess();
       }
@@ -135,8 +137,8 @@ export class UnvanComponent implements OnInit {
 
   private renderStatu2(status: number): string {
     // return status == 2 ? ["text-success"] : ["text-danger"];
-    return status == 1 ? '<div style="text-align: center;"><i title="Pasif" class="fas fa-minus text-danger font-18"></i></div>': 
-                         '<div style="text-align: center;"><i title="Aktif" class="fas fa-check text-success font-18"></i></div>';
+    return status == 1 ? '<div style="text-align: center;"><i title="Pasif" class="fas fa-minus text-danger font-18"></i></div>' :
+      '<div style="text-align: center;"><i title="Aktif" class="fas fa-check text-success font-18"></i></div>';
   }
 
 }
