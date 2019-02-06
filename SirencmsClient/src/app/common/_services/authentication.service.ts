@@ -35,6 +35,7 @@ export class AuthenticationService {
           let decodedJwtData = JSON.parse(decodedJwtJsonData);
 
           let isAdmin = decodedJwtData.role;
+          
           user.roleList = decodedJwtData.role;
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);

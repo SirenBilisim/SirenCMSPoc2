@@ -17,7 +17,7 @@ export class UnvanService extends ResourceService<UnvanBase> {
   }
 
   public getDataTablesData(dtParameters: DataTablesOptions): Observable<DataTablesResponse> {
-    return this.http.post<DataTablesResponse>(`${this.apiUrl}/${this.endpoint}/GetTableData`, dtParameters, {});
+    return this.http.post<DataTablesResponse>(`${this.apiUrl}/${this.endpoint}/GetTableData2`, dtParameters, {});
   }
 
   public checkExistItem(id: number, adi: string): Promise<boolean> {

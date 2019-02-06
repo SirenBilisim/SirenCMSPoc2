@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import {HandleErrorInterceptorService  } from "./common/_interceptors/handle-error-interceptor.service";
 
 
 
@@ -50,7 +50,9 @@ import { ToastrModule } from 'ngx-toastr';
     }),
 
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: HandleErrorInterceptorService, multi: true },
+],
   bootstrap: [AppComponent],
   entryComponents: [
     UnvanModalComponent,
