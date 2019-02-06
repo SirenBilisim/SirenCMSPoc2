@@ -22,6 +22,7 @@ import { DataTablesModule } from 'angular-datatables';
 import { DataTablesExtensionsModule } from './common/datatables-extensions/datatables-extensions.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
+import { LoginComponent } from './_Components/login/login.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { ToastrModule } from 'ngx-toastr';
     UnvanComponent,
     UnvanModalComponent,
     ConfirmComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

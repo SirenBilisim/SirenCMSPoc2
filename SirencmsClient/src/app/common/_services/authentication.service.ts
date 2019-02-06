@@ -33,15 +33,10 @@ export class AuthenticationService {
           let jwtData = user.token.split('.')[1];
           let decodedJwtJsonData = window.atob(jwtData);
           let decodedJwtData = JSON.parse(decodedJwtJsonData);
-
-          let isAdmin = decodedJwtData.role;
-          
           user.roleList = decodedJwtData.role;
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);
         }
-
-
         return user;
       }));
   }
