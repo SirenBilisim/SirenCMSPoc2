@@ -14,13 +14,17 @@
         <th>Durum</th>
       </tr>
     </thead>
+
     <tbody>
       <tr *ngFor="let item of items" (click)="select.selectRow(item)" [ngStyle]="{ 'color': select.selectedItem?.id === item.id ? 'white' : 'black' }"
         [ngClass]="{ 'bg-info': select.selectedItem?.id === item.id }">
         <td>{{ item.id }}</td>
         <td>{{ item.adi }}</td>
         <td>{{ item.parafUnvan }}</td>
-        <td>{{ item.status }}</td>        
+        <td>
+          <div [innerHTML]="renderStatu2(item.status)"></div>
+        </td>
+
       </tr>
       <tr *ngIf="items?.length === 0">
         <td colspan="4" class="no-data-available">No data!</td>

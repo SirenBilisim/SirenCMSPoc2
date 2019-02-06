@@ -18,9 +18,12 @@
       <em class="text-danger" *ngIf="adi.hasError('required') && adi.dirty">
         Name is required.</em>
       <em class="text-danger" *ngIf="adi.hasError('maxlength') && adi.dirty">
+
         Name too long.</em>
       <em class="text-danger" *ngIf="adi.hasError('adiExists') && adi.dirty">
-        Lütfen başka bir isim alınız.</em>
+        <i class="fas fa-exclamation-triangle text-danger font-18"></i>     
+        Lütfen başka bir isim alınız.
+      </em>
     </div>
 
     <div class="form-group">

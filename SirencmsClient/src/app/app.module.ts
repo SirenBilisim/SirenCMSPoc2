@@ -21,7 +21,6 @@ import { ConfirmComponent } from './_Components/confirm/confirm.component';
 import { DataTablesModule } from 'angular-datatables';
 import { DataTablesExtensionsModule } from './common/datatables-extensions/datatables-extensions.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ToastrModule } from 'ngx-toastr';
 
 
@@ -44,13 +43,12 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    FontAwesomeModule,
     ToastrModule.forRoot({
       timeOut: 2000,
       positionClass: 'toast-top-right',
-      preventDuplicates: true,      
+      preventDuplicates: true,
     }),
-    
+
   ],
   providers: [],
   bootstrap: [AppComponent],
@@ -59,4 +57,5 @@ import { ToastrModule } from 'ngx-toastr';
     ConfirmComponent
   ]
 })
-export class AppModule { }
+export class AppModule {
+}

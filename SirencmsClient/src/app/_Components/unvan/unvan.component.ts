@@ -12,13 +12,14 @@ import { Confirmation } from 'src/app/common/_enums/confirmation.enum';
 import { ConfirmComponent } from './../confirm/confirm.component';
 import { Action } from 'src/app/common/_enums/action.enum';
 import { Mode } from 'src/app/common/_enums/mode.enum';
-import {Turkish  } from 'src/app/common/_models/datatable.turkish';
+import { Turkish } from 'src/app/common/_models/datatable.turkish';
+import { faMinus, faCheck, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-unvan',
   templateUrl: './unvan.component.html',
   styleUrls: ['./unvan.component.css'],
-  providers: [ DataTableSelect ]
+  providers: [DataTableSelect]
 })
 export class UnvanComponent implements OnInit {
   @ViewChild(DataTableDirective)
@@ -27,10 +28,13 @@ export class UnvanComponent implements OnInit {
   public items: Unvan[] = [];
   public dtTrigger = new Subject();
 
+  private itemActive = faCheck;
+  private itemInactive = faMinus;
+
   constructor(
-    private itemService: UnvanService, 
-    private modalService: NgbModal, 
-    private toastr: ToastrService, 
+    private itemService: UnvanService,
+    private modalService: NgbModal,
+    private toastr: ToastrService,
     public select: DataTableSelect<Unvan>) { }
 
   ngOnInit() {
@@ -40,7 +44,7 @@ export class UnvanComponent implements OnInit {
       serverSide: true,
       responsive: true,
       lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Hepsi"]],
-      language:Turkish,
+      language: Turkish,
       ajax: (dtParameters: any, callback) => {
         this.itemService.getDataTablesData(dtParameters).subscribe(resp => {
           this.items = resp.data as Unvan[];
@@ -57,7 +61,8 @@ export class UnvanComponent implements OnInit {
         { data: "parafUnvan" },
         {
           data: "status",
-          searchable: false
+          searchable: false,
+          width:"50"
         }
       ]
     }
@@ -101,7 +106,7 @@ export class UnvanComponent implements OnInit {
     modalReference.componentInstance.mode = mode;
 
     modalReference.result.then((result) => {
-      console.log(result);
+      
       if (result === "save") {
         this.reloadAndToastSuccess();
       }
@@ -118,9 +123,20 @@ export class UnvanComponent implements OnInit {
   }
 
   private actionDispatcher = (action: Action, item: Unvan) => ({
-    "ADD": () =>    this.openModal(null, Mode.ADD),
-    "EDIT": () =>   this.openModal(item, Mode.EDIT),
-    "VIEW": () =>   this.openModal(item, Mode.READONLY),
+    "ADD": () => this.openModal(null, Mode.ADD),
+    "EDIT": () => this.openModal(item, Mode.EDIT),
+    "VIEW": () => this.openModal(item, Mode.READONLY),
     "DELETE": () => this.deleteItem()
   })[action]()
+
+  private renderStatu(status: number): IconDefinition {
+    return status == 2 ? this.itemActive : this.itemInactive;
+  }
+
+  private renderStatu2(status: number): string {
+    // return status == 2 ? ["text-success"] : ["text-danger"];
+    return status == 1 ? '<div style="text-align: center;"><i title="Pasif" class="fas fa-minus text-danger font-18"></i></div>': 
+                         '<div style="text-align: center;"><i title="Aktif" class="fas fa-check text-success font-18"></i></div>';
+  }
+
 }
