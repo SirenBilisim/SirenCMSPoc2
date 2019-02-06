@@ -9,7 +9,7 @@ import { AuthenticationService } from "../_services/authentication.service";
 @Injectable({
   providedIn: 'root'
 })
-export class HandleErrorInterceptorService {
+export class HandleHttpErrorInterceptor {
   constructor(
     private authenticationService: AuthenticationService,
     private router: Router,

@@ -6,8 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {HandleErrorInterceptorService  } from "./common/_interceptors/handle-error-interceptor.service";
-
+import {HandleHttpErrorInterceptor  } from "./common/_interceptors/handle-error.interceptor";
+import {JwtInterceptor  } from "./common/_interceptors/jwt.interceptor";
 
 
 import { AppComponent } from './app.component';
@@ -51,7 +51,8 @@ import { ToastrModule } from 'ngx-toastr';
 
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: HandleErrorInterceptorService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HandleHttpErrorInterceptor, multi: true },
 ],
   bootstrap: [AppComponent],
   entryComponents: [
