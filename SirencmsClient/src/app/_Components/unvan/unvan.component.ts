@@ -53,7 +53,7 @@ export class UnvanComponent implements OnInit {
             recordsFiltered: resp.recordsFiltered,
             data: []
           });
-        }, err => this.toastr.error(err));
+        });
       },
       columns: [
         { data: "id" },

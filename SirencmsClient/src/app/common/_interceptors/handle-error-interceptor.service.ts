@@ -28,22 +28,25 @@ export class HandleErrorInterceptorService {
         this.router.navigate(['login']);
       }
 
-      if (err.status === 403) {
+      else if (err.status === 403) {
         // auto logout if 401 response returned from api
         this.toastr.error('Yetkisiz bir sayfaya erişim sağlamak istediniz.');
         this.router.navigate(['home']);
       }
 
-      if (err.status === 400 || err.status === 404) {
+      else if (err.status === 400 || err.status === 404) {
         this.toastr.error('Beklenmeyen bir hata oluştu.');
         return throwError('Beklenmeyen bir hata oluştu.');
       }
-      if (err.status === 512) {
+      else if (err.status === 512) {
         this.toastr.warning(err.error.message);
         return throwError(err.error.message);
       }
-      const error = err.error.message || err.statusText;
-      return throwError(error);
+      else{
+        const error = err.error.message || err.statusText;
+        return throwError(error);
+      }
+      
     }))
   }
 }
