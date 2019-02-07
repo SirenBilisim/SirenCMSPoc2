@@ -1,4 +1,6 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { LocalUser } from "./common/_models/local.user";
+import { AuthenticationService } from "./common/_services/authentication.service";
 
 @Component({
   selector: 'app-root',
@@ -6,8 +8,15 @@ import { Component,OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'SirencmsClient';
+  currentUser: LocalUser;
 
-  ngOnInit() {  
+  constructor(
+    private authenticationService: AuthenticationService
+  ) {
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+  }
+
+ 
+  ngOnInit() {
   }
 }

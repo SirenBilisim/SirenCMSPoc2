@@ -42,13 +42,13 @@ export class UnvanModalComponent implements OnInit {
       adi: new FormControl
         (
           { value: this.isInAddMode() ? "" : this.itemToEdit.adi, disabled: this.isReadOnly() },
-          [Validators.required, Validators.maxLength(255)],
+          [Validators.required, Validators.maxLength(100)],
           [this.checkExistItem.bind(this)]
         ),
       parafUnvan: new FormControl
         (
           { value: this.isInAddMode() ? "" : this.itemToEdit.parafUnvan, disabled: this.isReadOnly() },
-          [Validators.required, Validators.maxLength(155)]
+          [Validators.maxLength(50)]
         ),
 
     });

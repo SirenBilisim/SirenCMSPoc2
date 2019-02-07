@@ -38,15 +38,14 @@ export class HandleHttpErrorInterceptor {
         this.toastr.error('Beklenmeyen bir hata oluştu.');
         return throwError('Beklenmeyen bir hata oluştu.');
       }
-      else if (err.status === 512) {
-        this.toastr.warning(err.error.message);
+      else if (err.status === 422) {
         return throwError(err.error.message);
       }
-      else{
+      else {
         const error = err.error.message || err.statusText;
         return throwError(error);
       }
-      
+
     }))
   }
 }

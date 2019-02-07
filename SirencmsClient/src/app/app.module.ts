@@ -23,6 +23,7 @@ import { DataTablesExtensionsModule } from './common/datatables-extensions/datat
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './_Components/login/login.component';
+import { DashboardComponent } from './_Components/dashboard/dashboard.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { LoginComponent } from './_Components/login/login.component';
     UnvanModalComponent,
     ConfirmComponent,
     LoginComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

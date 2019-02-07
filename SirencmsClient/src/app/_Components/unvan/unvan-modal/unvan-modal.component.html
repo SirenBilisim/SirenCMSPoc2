@@ -16,12 +16,14 @@
       <label for="adi" class="control-label">Name:</label>
       <input formControlName="adi" class="form-control" type="text" id="adi">
       <em class="text-danger" *ngIf="adi.hasError('required') && adi.dirty">
-        Name is required.</em>
+        <i class="fas fa-exclamation-triangle text-danger font-18"></i>
+        İsim alanı gereklidir.
+      </em>
       <em class="text-danger" *ngIf="adi.hasError('maxlength') && adi.dirty">
-
-        Name too long.</em>
+        İsim alanı 100 karakterden uzun olamaz
+      </em>
       <em class="text-danger" *ngIf="adi.hasError('adiExists') && adi.dirty">
-        <i class="fas fa-exclamation-triangle text-danger font-18"></i>     
+        <i class="fas fa-exclamation-triangle text-danger font-18"></i>
         Lütfen başka bir isim alınız.
       </em>
     </div>
@@ -29,10 +31,9 @@
     <div class="form-group">
       <label class="control-label" for="parafUnvan">Paraf Ünvan:</label>
       <input formControlName="parafUnvan" class="form-control" type="text" id="parafUnvan">
-      <em class="text-danger" *ngIf="parafUnvan.hasError('required') && parafUnvan.dirty">Paraf Ünvan
-        is required.</em>
-      <em class="text-danger" *ngIf="parafUnvan.hasError('maxlength') && parafUnvan.dirty">Paraf Ünvan
-        too long.</em>
+      <em class="text-danger" *ngIf="parafUnvan.hasError('maxlength') && parafUnvan.dirty">
+          Paraf ünvan alanı 50 karakterden uzun olamaz
+      </em>
     </div>
   </form>
 </div>
